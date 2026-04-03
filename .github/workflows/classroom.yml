@@ -17,135 +17,162 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Case 01 - radiasi tinggi
+      - name: Case 01 - contoh resmi
         id: case-01
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 01 - radiasi tinggi
+          test-name: Case 01 - contoh resmi
           setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal1 soal1.c
           command: ./soal1
-          input: "2 371 6 10"
-          expected-output: "TOLAK"
+          input: "6 2 10 2 20 1 5 4 20 3 10 4 10"
+          expected-output: |-
+            FOUND 2
+            NOT FOUND
+            LIST 5 20
           comparison-method: exact
           timeout: 2
-          max-score: 5
+          max-score: 10
 
-      - name: Case 02 - suhu karantina
+      - name: Case 02 - list kosong lalu find
         id: case-02
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 02 - suhu karantina
+          test-name: Case 02 - list kosong lalu find
           setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal1 soal1.c
           command: ./soal1
-          input: "2 390 1 10"
-          expected-output: "KARANTINA"
+          input: "1 4 7"
+          expected-output: |-
+            NOT FOUND
+            LIST EMPTY
           comparison-method: exact
           timeout: 2
-          max-score: 5
+          max-score: 10
 
-      - name: Case 03 - izin satu jam terlalu pagi
+      - name: Case 03 - push front berulang
         id: case-03
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 03 - izin satu jam terlalu pagi
+          test-name: Case 03 - push front berulang
           setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal1 soal1.c
           command: ./soal1
-          input: "1 370 0 5"
-          expected-output: "TOLAK"
+          input: "4 1 1 1 2 1 3 4 2"
+          expected-output: |-
+            FOUND 1
+            LIST 3 2 1
           comparison-method: exact
           timeout: 2
-          max-score: 5
+          max-score: 10
 
-      - name: Case 04 - izin satu normal
+      - name: Case 04 - push back berulang
         id: case-04
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 04 - izin satu normal
+          test-name: Case 04 - push back berulang
           setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal1 soal1.c
           command: ./soal1
-          input: "1 371 2 10"
-          expected-output: "MASUK"
+          input: "4 2 1 2 2 2 3 4 2"
+          expected-output: |-
+            FOUND 1
+            LIST 1 2 3
           comparison-method: exact
           timeout: 2
-          max-score: 5
+          max-score: 10
 
-      - name: Case 05 - izin dua lolos batas bawah jam
+      - name: Case 05 - delete head
         id: case-05
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 05 - izin dua lolos batas bawah jam
+          test-name: Case 05 - delete head
           setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal1 soal1.c
           command: ./soal1
-          input: "2 371 2 8"
-          expected-output: "MASUK"
+          input: "4 2 10 2 20 3 10 4 10"
+          expected-output: |-
+            NOT FOUND
+            LIST 20
           comparison-method: exact
           timeout: 2
-          max-score: 5
+          max-score: 10
 
-      - name: Case 06 - izin dua lolos batas atas jam
+      - name: Case 06 - delete middle first occurrence only
         id: case-06
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 06 - izin dua lolos batas atas jam
+          test-name: Case 06 - delete middle first occurrence only
           setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal1 soal1.c
           command: ./soal1
-          input: "2 371 1 18"
-          expected-output: "MASUK"
+          input: "6 2 5 2 7 2 5 3 5 4 5 4 7"
+          expected-output: |-
+            FOUND 1
+            FOUND 0
+            LIST 7 5
           comparison-method: exact
           timeout: 2
-          max-score: 5
+          max-score: 10
 
-      - name: Case 07 - izin dua pemeriksaan karena radiasi
+      - name: Case 07 - delete non existing
         id: case-07
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 07 - izin dua pemeriksaan karena radiasi
+          test-name: Case 07 - delete non existing
           setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal1 soal1.c
           command: ./soal1
-          input: "2 371 3 10"
-          expected-output: "PEMERIKSAAN"
+          input: "4 2 1 2 2 3 9 4 2"
+          expected-output: |-
+            FOUND 1
+            LIST 1 2
           comparison-method: exact
           timeout: 2
-          max-score: 5
+          max-score: 10
 
-      - name: Case 08 - izin dua pemeriksaan karena jam
+      - name: Case 08 - delete until empty
         id: case-08
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 08 - izin dua pemeriksaan karena jam
+          test-name: Case 08 - delete until empty
           setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal1 soal1.c
           command: ./soal1
-          input: "2 371 1 7"
-          expected-output: "PEMERIKSAAN"
+          input: "4 2 9 3 9 4 9 4 1"
+          expected-output: |-
+            NOT FOUND
+            NOT FOUND
+            LIST EMPTY
           comparison-method: exact
           timeout: 2
-          max-score: 5
+          max-score: 10
 
-      - name: Case 09 - izin tiga lolos
+      - name: Case 09 - mixed operations
         id: case-09
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 09 - izin tiga lolos
+          test-name: Case 09 - mixed operations
           setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal1 soal1.c
           command: ./soal1
-          input: "3 379 0 12"
-          expected-output: "MASUK"
+          input: "8 2 3 1 2 2 4 4 3 3 2 4 4 2 1 4 2"
+          expected-output: |-
+            FOUND 1
+            FOUND 2
+            FOUND 0
+            LIST 2 4 1
           comparison-method: exact
           timeout: 2
-          max-score: 5
+          max-score: 10
 
-      - name: Case 10 - izin tiga gagal
+      - name: Case 10 - duplicates and positions
         id: case-10
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 10 - izin tiga gagal
+          test-name: Case 10 - duplicates and positions
           setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal1 soal1.c
           command: ./soal1
-          input: "3 380 0 12"
-          expected-output: "TOLAK"
+          input: "7 2 1 2 1 2 1 4 1 3 1 4 1 4 2"
+          expected-output: |-
+            FOUND 0
+            FOUND 0
+            NOT FOUND
+            LIST 1 1
           comparison-method: exact
           timeout: 2
-          max-score: 5
+          max-score: 10
 
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
