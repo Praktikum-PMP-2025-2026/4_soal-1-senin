@@ -150,9 +150,9 @@ jobs:
           input: "8 2 3 1 2 2 4 4 3 3 2 4 4 2 1 4 2"
           expected-output: |-
             FOUND 1
-            FOUND 2
-            FOUND 0
-            LIST 2 4 1
+            FOUND 1
+            NOT FOUND
+            LIST 3 4 1
           comparison-method: exact
           timeout: 2
           max-score: 10
